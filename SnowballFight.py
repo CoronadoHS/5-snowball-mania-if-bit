@@ -5,10 +5,11 @@
     Class: AP Computer Science Principles
     Python: 3.11.5
 '''
-
+from colorama import *
 import random
 import time
 
+init()
 
 def printIntro():
     '''
@@ -41,7 +42,6 @@ def getNames():
     myname = input("name please ")
     playerlist.append(myname)
     print( "add more players type done when done")
-    input()
     nextname = input()
     while (nextname != "done"):
         playerlist.append (nextname)
@@ -121,16 +121,31 @@ def playSnowballFight(players):
         vitctim = getVictim(players , thrower)
         hitresult = getHitResult() 
 
+        surives1 = (Fore.LIGHTMAGENTA_EX + thrower + Fore.LIGHTCYAN_EX + " throws at " + Fore.LIGHTMAGENTA_EX + vitctim + " and hits but is not out")
+        surives2 = (Fore.LIGHTMAGENTA_EX + thrower +  " attacks " + vitctim + " but they eat it")
+        surives3 = (Fore.LIGHTMAGENTA_EX + thrower + Fore.LIGHTCYAN_EX + " throws at " + Fore.LIGHTMAGENTA_EX + vitctim + " but they tank it")
+        surivemessege = [surives1 , surives2 , surives3]
+
+        ko1 = (Fore.LIGHTRED_EX + thrower + " takes out " + vitctim + " - " + vitctim + " is out")
+        ko2 = (Fore.LIGHTRED_EX + thrower + " megaknights " + vitctim + " RIP")
+        ko3 = (Fore.LIGHTRED_EX + thrower + " headshots " + vitctim + " they not geting back up")
+        komessege = [ko1 , ko2 , ko3]
+
+        miss1 = (Fore.GREEN + thrower + Fore.LIGHTCYAN_EX + " throws at " +  Fore.GREEN + vitctim + " but misses")
+        miss2 = (Fore.GREEN + thrower + " sliped and missed " + vitctim)
+        miss3 = (Fore.GREEN + thrower + " droped their snowball")
+        missmessege = (miss1 , miss2 , miss3 )
+
         if (hitresult == True):
             koresult = random.randint(1,2) # 1=ko 2=no ko 
             if (koresult == 1):
-                print(thrower + " throws at " + vitctim + " and hits but is not out")
+                print(random.choice(surivemessege))
             else: 
-                print(thrower + " takes out " + vitctim + " - " + vitctim + " is out")
+                print(random.choice(komessege))
                 players.remove(vitctim)
         else:
-            print(thrower + " throws at " + vitctim + "but misses")
-        time.sleep(3)
+            print(random.choice(missmessege))
+        time.sleep(0.5)
 
 def printOutro(winner):
     '''
@@ -141,7 +156,7 @@ def printOutro(winner):
     ' Return: none
     '''
     print("❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️")
-    print("All hail " + winner + ", the Ultimate Student/Snowball Wizard!")
+    print(Fore.LIGHTYELLOW_EX + "All hail " + winner + ", the Ultimate Student/Snowball Wizard!")
     print("❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️")
 
 
